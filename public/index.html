@@ -39,5 +39,15 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script type="text/javascript">
+      const request = async () => {
+        const response = await fetch('http://api.themoviedb.org/3/movie/upcoming?api_key=5a7f34f54c25ea35d2c772a1bf4b5535');
+
+        const json = await response.json();
+        console.log(json);
+      }
+
+      request();
+    </script>
   </body>
 </html>

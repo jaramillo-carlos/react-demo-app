@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app"></div>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <!-- Load Babel -->
+  <!-- v6 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // ###### JSX ######
+    function TitleJSX() {
+      return (<h1>Text inside Element</h1>)
+      // Babel will transpile in
+      // return React.createElement('h1', null, 'Text inside Element');
+    }
+    // ReactDOM.render(TitleJSX(), document.getElementById('app'));
+
+    const finalDate = new Date('2020-09-04')
+    const currentDate = new Date();
+
+    const difference =  finalDate.getTime() - currentDate.getTime();
+    var days = Math.round(difference/ (1000 * 60 * 60 * 24));
+    var hours = Math.round((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.round((difference % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.round((difference % (1000 * 60)) / (1000));
+
+    function DateComponent() {
+      return (
+        <strong>
+          Faltan { days } días, { hours } horas, { minutes } minutos, { seconds } segundos.
+        </strong>)
+    }
+
+    window.setInterval(function () {
+      ReactDOM.render(DateComponent(), document.getElementById('app'));
+    }, 1000)
+
+    ReactDOM.render(DateComponent(), document.getElementById('app'));
+  </script>
+  <script type="text/javascript">
+
+    // Createds by React
+    function Title() {
+      return React.createElement('h1', { style: { color: 'red' } }, 'React Element');
+      // return React.createElement('h1', null, 'React Element');
+      // return React.createElement('_element_', _properties_, '_content_');
+    }
+
+    function Paragraph() {
+      return React.createElement('p', null, 'React paragraph');
+    }
+
+    function Container() {
+      return React.createElement('section', null, Title(), Paragraph(), Counter())
+    }
+
+    var seconds = 0;
+    function Counter() {
+      // Each React Component can have dynamic content and static content
+      return React.createElement('h1', null, 'Seconds: ', seconds, ' <-');
+    }
+
+    window.setInterval(function () {
+      seconds++;
+      // ReactDOM.render(Container(), document.getElementById('app'));
+    }, 1000)
+
+    // Render by ReactDOM
+    // ReactDOM.render(Title(), document.getElementById('app'));
+
+    // ReactDOM.render(Container(), document.getElementById('app'));
+  </script>
+</body>
+
+</html>
