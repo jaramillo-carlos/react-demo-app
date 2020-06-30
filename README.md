@@ -1,3 +1,12 @@
+# To add Storybook
+`npx -p @storybook/cli sb init --type react`
+## Addons
+`npm i -D -E @storybook/addon-knobs` to send properties editables in web
+`npm i -D -E @storybook/addon-viewport` to test responsive
+
+## React devtools
+When you select a relement on react dev tools inspector, you can print it in console using: `$r` and in normal inspector use `$0` and in chrome can check previus with `$1`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

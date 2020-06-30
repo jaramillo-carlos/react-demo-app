@@ -3,7 +3,7 @@ import React from 'react';
 function InLineProgressBar(props) {
   const styles = {
     backgroundColor: '#fefefe',
-    backgroundImage: `linear-gradient(90deg, ${ props.color } 0%, ${ props.color} ${ props.percentage }%, #fefefe ${ props.percentage }%, #fefefe 100%)`,
+    backgroundImage: `linear-gradient(90deg, ${props.color} 0%, ${props.color} ${props.percentage}%, #fefefe ${props.percentage}%, #fefefe 100%)`,
     backgroundSize: '100%',
     backgroundRepeat: 'no-repeat',
     border: `.125em solid ${props.color}`,
@@ -16,7 +16,7 @@ function InLineProgressBar(props) {
     margin: '2em auto'
   }
   return (
-    <div style={ styles }>{ props.children }</div>
+    <div style={styles}>{props.children}</div>
   )
 }
 

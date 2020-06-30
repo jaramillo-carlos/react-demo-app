@@ -20,6 +20,9 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     // ###### JSX ######
+    // Functional component must return markup (which is what React.createElement generates)
+    // These component render functions have to be fast. This function is going to be called a lot. It's a hot code path
+    // Inside of the render function, you cannot modify any sort of state. Put in functional terms, this function must be pure. You don't know how or when the function will be called so it can't modify any ambient state.
     function TitleJSX() {
       return (<h1>Text inside Element</h1>)
       // Babel will transpile in
@@ -30,8 +33,8 @@
     const finalDate = new Date('2020-09-04')
     const currentDate = new Date();
 
-    const difference =  finalDate.getTime() - currentDate.getTime();
-    var days = Math.round(difference/ (1000 * 60 * 60 * 24));
+    const difference = finalDate.getTime() - currentDate.getTime();
+    var days = Math.round(difference / (1000 * 60 * 60 * 24));
     var hours = Math.round((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.round((difference % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.round((difference % (1000 * 60)) / (1000));
@@ -39,15 +42,15 @@
     function DateComponent() {
       return (
         <strong>
-          Faltan { days } días, { hours } horas, { minutes } minutos, { seconds } segundos.
+          Faltan { days} días, { hours} horas, { minutes} minutos, { seconds} segundos.
         </strong>)
     }
 
     window.setInterval(function () {
-      ReactDOM.render(DateComponent(), document.getElementById('app'));
+      // ReactDOM.render(DateComponent(), document.getElementById('app'));
     }, 1000)
 
-    ReactDOM.render(DateComponent(), document.getElementById('app'));
+    // ReactDOM.render(DateComponent(), document.getElementById('app'));
   </script>
   <script type="text/javascript">
 
@@ -55,15 +58,22 @@
     function Title() {
       return React.createElement('h1', { style: { color: 'red' } }, 'React Element');
       // return React.createElement('h1', null, 'React Element');
-      // return React.createElement('_element_', _properties_, '_content_');
+      // return React.createElement('_element_', _properties_, '_content_', [_Array_of_CreateElements_childrens_]);
+
+      // React.createElement creates one instance of some component. If you pass it a string, it will create a DOM tag with that as the string.
+      // The second empty object (you can put null too) is attributes we're passing to the tag or component. Whatever we put in this will be output to the element (like id or style.)
     }
 
-    function Paragraph() {
-      return React.createElement('p', null, 'React paragraph');
+    function Paragraph({ paragraph = 'React paragraph' }) {
+      return React.createElement('p', null, paragraph);
+    }
+
+    function CustomContainer() {
+      return React.createElement(Paragraph, { paragraph: 'Custom paragraph' })
     }
 
     function Container() {
-      return React.createElement('section', null, Title(), Paragraph(), Counter())
+      return React.createElement('section', null, Title(), Paragraph({}), Counter(), CustomContainer())
     }
 
     var seconds = 0;
@@ -75,12 +85,41 @@
     window.setInterval(function () {
       seconds++;
       // ReactDOM.render(Container(), document.getElementById('app'));
+      // ReactDOM.render is what takes our rendered App component and puts in the DOM (in our case we're putting it in the root element)
     }, 1000)
 
     // Render by ReactDOM
     // ReactDOM.render(Title(), document.getElementById('app'));
 
-    // ReactDOM.render(Container(), document.getElementById('app'));
+    ReactDOM.render(Container(), document.getElementById('app'));
+  </script>
+  <script type="text/javascript">
+    const Pet = ({name, animal, breed}) => {
+      return React.createElement("div", {}, [
+        React.createElement("h1", {}, name),
+        React.createElement("h2", {}, animal),
+        React.createElement("h2", {}, breed)
+      ]);
+    };
+
+    const App = () => {
+      return React.createElement("div", {}, [
+        React.createElement("h1", {}, "Adopt Me!"),
+        React.createElement(Pet, {
+          name: "Luna",
+          animal: "Dog",
+          breed: "Havanese"
+        }),
+        React.createElement(Pet, {
+          name: "Pepper",
+          animal: "Bird",
+          breed: "Cockatiel"
+        }),
+        React.createElement(Pet, { name: "Doink", animal: "Cat", breed: "Mix" })
+      ]);
+    };
+
+    ReactDOM.render(React.createElement(App), document.getElementById("root"));
   </script>
 </body>
 

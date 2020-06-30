@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import StyledProgressBar from './StyledProgressBar';
 
 function ProgressBar(props) {
-  return <StyledProgressBar color={ props.color } percentage={ props.percentage } />
+  return <StyledProgressBar color={props.color} percentage={props.percentage} />
 }
 
 ProgressBar.propTypes = {

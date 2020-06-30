@@ -9,10 +9,10 @@ const load = keyframes`
 
 const StyledProgressBar = styled.div`
   background-color: #fefefe;
-  background-image: ${ props => `linear-gradient(90deg, ${ props.color } 0%, ${ props.color} ${ props.percentage }%, #fefefe ${ props.percentage }%, #fefefe 100%)`};
+  background-image: ${ props => `linear-gradient(90deg, ${props.color} 0%, ${props.color} ${props.percentage}%, #fefefe ${props.percentage}%, #fefefe 100%)`};
   background-size: 100%;
   background-repeat: no-repeat;
-  border: .125em solid ${ props => props.color };
+  border: .125em solid ${ props => props.color};
   border-radius: 2em;
   width: 100%;
   max-width: 36em;
