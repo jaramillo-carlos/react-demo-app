@@ -9,7 +9,8 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    /* animation: App-logo-spin infinite 20s linear; */
+    /* animation: fade infinite 1s linear; */
   }
 }
 
@@ -35,4 +36,51 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade {
+  background: orange;
+}
+.fade-enter {
+  /* estado inicial entrada */
+  background: lightgreen;
+  animation: fade 1s;
+}
+.fade-enter-active {
+  /* estado final entrada */
+  background: green;
+  /* transition-duration: 1s; */
+}
+.fade-exit {
+  /* estado inicial salida */
+  background: lightcoral;
+  animation: fade 1s;
+  /* transform: translateY(0); */
+}
+.fade-exit-active {
+  /* estado final salida */
+  background: red;
+  /* transition-duration: 1s; */
+  /* transform: translateY(500px); */
 }

@@ -9,6 +9,13 @@ When you select a relement on react dev tools inspector, you can print it in con
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Animations
+`npm i -E react-transition-group`
+
+# Easy easter eggs (konami codes, etc.)
+`npm i -E cheet.js`
+
+# CRA
 ## Available Scripts
 
 In the project directory, you can run:
