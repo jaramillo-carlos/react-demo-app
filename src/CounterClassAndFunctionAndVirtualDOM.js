@@ -11,22 +11,22 @@ las partes del sub-tree que se deben actualizar cuando el estado de alguno de su
 comparación a realizarlas mediante la utilización del API DOM.
 
 Una vez confeccionado nuestro árbol de elementos lo vamos a poder adjuntar a algún HTML tag que funcione como contendor mediante la función: React.render()
-*/
+
 class Hello extends React.Component {
     render() {
         console.log(React.createElement('div', null, `Hello ${this.props.toWhat}`));
         return React.createElement('div', null, `Hello ${this.props.toWhat}`);
     }
 }
-
+*/
 /*
 React.render() va a ser llamado cada vez que se modifique el estado de nuestros componentes
-*/
+
 ReactDOM.render(
     React.createElement(Hello, { toWhat: 'World' }, null),
     document.getElementById('root')
 );
-
+*/
 
 // counter
 export class CounterClass extends Component {
@@ -50,6 +50,7 @@ export function CounterFunction() {
     const [anotherCounter, setAnotherCount] = useState(0)
 
     const handleIncrementClick = useCallback(() => setCount(counter + 1), [counter])
+    // const handleIncrementClick = useCallback(() => setCount(_counter => _counter + 1), [setCount])
 
     // when use useCallback only create function again when change arguments
     const doSomething = useCallback(() => alert(10), [anotherCounter])
